@@ -1,14 +1,22 @@
-Webcam MATH game
-They get a multiple choice problem, then they have all potential solutions on the corner of the screen, and the child has the opportunity to use a pencil to like draw on the middle of the screen to work things out, and when they're done, they'll pick the correct answer
-A 4 minute timer or something, and then they get a score at the end --> Promote math-solving skills
+MathMoves is an interactive educational tool designed to promote math-solving skills among elementary school students. By combining multiple-choice problems with real-time drawing capabilities, this game provides an engaging way for children to work through math challenges.
 
-For drawing: If you want the pen to like... draw, then hold your right hand over your head, and then draw with your left hand
-To select an option, you should hold your hands over it for 3 seconds 
-AND to make it seem like it's promoting STEM education even more, children can select different "modes" like [MULTIPLICATION CHALLENGE] OR [SUBTRACTION CHALLENGE] or [LONG DIVISION CHALLENGE] or [ALL MATH]
--- socioeconomic issue: Limited Access To Reviewing and Tutoring for Elementary School Students; Limited Access to Technology and Resources
+Features
+Interactive Problem Solving: Players are presented with multiple-choice math problems and have the option to use a virtual pencil to work out solutions directly on the screen.
+Timer and Scoring System: A 4-minute timer adds an element of challenge, and players receive a score based on their performance at the end of each session.
+Promotion of STEM Education: In addition to general math challenges, children can choose from different modes such as Multiplication, Subtraction, Long Division, or an All Math mode to tailor their learning experience.
+MathMoves addresses socioeconomic issues by providing a platform for learning that is accessible to all students, regardless of their access to tutoring or technology resources. By offering diverse modes and personalized feedback, it aims to bridge educational gaps and promote inclusivity in math education.
 
+Feedback and Adaptive Learning
+The program intelligently tracks the problems that users struggle with, allowing for targeted support and feedback. If a player consistently struggles with subtraction, for example, the game will adjust by presenting more subtraction problems to reinforce learning in that area. Additionally, the game utilizes machine learning to generate supportive feedback tailored to each player's individual progress and challenges.
 
-program should keep track of the problems that you got wrong, then after, it should make an LLM call and then generate some text offering supportive feedback on their skills
-also, it should keep track of the type of problems you get wrong. if you get more subtraction problems wrong, it'll show you more subtraction problems
+Installation
+To get started with Webcam Math Game, simply clone the repository and follow the instructions in the README file. Get ready to enhance your math skills while having fun!
 
+Contributing
+Contributions to Webcam Math Game are welcome! Whether you're interested in adding new features, fixing bugs, or improving documentation, your help is appreciated. Please refer to the CONTRIBUTING.md file for guidelines on how to contribute.
 
+License
+Webcam Math Game is licensed under the MIT License. See the LICENSE file for details.
+
+Contact
+Have questions or suggestions? Feel free to reach out to us at contact@example.com. We'd love to hear from you!
