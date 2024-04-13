@@ -3,8 +3,8 @@ import random
 class SubtractionManager:
     @staticmethod
     def initialize_static_variables():
-        SubtractionManager.varA = random.randint(0, 30)
-        SubtractionManager.varB = random.randint(-20, 20)
+        SubtractionManager.varA = random.randint(0, 40)
+        SubtractionManager.varB = random.randint(-15, 30)
         SubtractionManager.answer = SubtractionManager.varA - SubtractionManager.varB
         SubtractionManager.answerChoices = [random.randint(abs(SubtractionManager.varA) * -1, abs(SubtractionManager.varB)) for _ in range(4)]
         SubtractionManager.correctIndex = random.randint(0, 3)
@@ -12,8 +12,8 @@ class SubtractionManager:
 
     @staticmethod
     def makeNewProblem():
-        SubtractionManager.varA = random.randint(0, 30)
-        SubtractionManager.varB = random.randint(-20, 20)
+        SubtractionManager.varA = random.randint(0, 40)
+        SubtractionManager.varB = random.randint(-15, 30)
         SubtractionManager.answer = SubtractionManager.varA - SubtractionManager.varB
         SubtractionManager.correctIndex = random.randint(0, 3)
 
@@ -26,6 +26,9 @@ class SubtractionManager:
                     randAnswer = SubtractionManager.answer + random.randint(-5, 5)
                 else:
                     randAnswer = SubtractionManager.answer * -1
+
+                if (randAnswer == SubtractionManager.answer):
+                    randAnswer = randAnswer + random.randint(-20, -1)
                 SubtractionManager.answerChoices.append(randAnswer)
         
         SubtractionManager.answerChoices[SubtractionManager.correctIndex] = SubtractionManager.answer
