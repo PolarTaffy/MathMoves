@@ -8,6 +8,7 @@ class SubtractionManager:
         SubtractionManager.answer = SubtractionManager.varA - SubtractionManager.varB
         SubtractionManager.answerChoices = [random.randint(abs(SubtractionManager.varA) * -1, abs(SubtractionManager.varB)) for _ in range(4)]
         SubtractionManager.correctIndex = random.randint(0, 3)
+        SubtractionManager.answerChoices[SubtractionManager.correctIndex] = SubtractionManager.answer
 
     @staticmethod
     def makeNewProblem():
@@ -26,6 +27,8 @@ class SubtractionManager:
                 else:
                     randAnswer = SubtractionManager.answer * -1
                 SubtractionManager.answerChoices.append(randAnswer)
+        
+        SubtractionManager.answerChoices[SubtractionManager.correctIndex] = SubtractionManager.answer
 
     @staticmethod
     def getProblem():

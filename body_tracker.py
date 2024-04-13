@@ -66,6 +66,12 @@ def pose_estimation(frame):
 
     return frame
 
+def resetCounters():
+    answerCooldown = 50
+    c1counter = 0
+    c2counter = 0
+    c3counter = 0
+    c4counter = 0
 
 # estimated_image = pose_estimation(img)
 # plt.imshow(cv.cvtColor(estimated_image, cv.COLOR_BGR2RGB))
@@ -85,6 +91,9 @@ c1counter = 0
 c2counter = 0
 c3counter = 0
 c4counter = 0
+score = 0
+answerCooldown = 0
+incorrectProblems = []
     
 while True:
     hasFrame, frame = cap.read()
@@ -189,22 +198,57 @@ while True:
     cv.putText(frame, str(SubtractionManager.getAnswerChoices()[2]), (20, frameHeight - 70), font, 1, (255, 255, 255), 2) #ac3
     cv.putText(frame, str(SubtractionManager.getAnswerChoices()[3]), (int(frameWidth/2) + 200, frameHeight - 70), font, 1, (255, 255, 255), 2) #ac4
 
-    
-
+    correctAnswer = SubtractionManager.getCorrectIndex()
 
     #counter manager
-    if (c1counter >= 25):
-        cv.putText(frame, 'Option 1 Picked!', (10, 250), font, 2.5, (255, 255, 255), 2)
-    if (c2counter >= 25):
-        cv.putText(frame, 'Option 2 Picked!', (10, 250), font, 2.5, (255, 255, 255), 2)
-    if (c3counter >= 25):
-        cv.putText(frame, 'Option 3 Picked!', (10, 250), font, 2.5, (255, 255, 255), 2)
-    if (c4counter >= 25):
-        cv.putText(frame, 'Option 4 Picked!', (10, 250), font, 2.5, (255, 255, 255), 2)
+    if (c1counter >= 25 and answerCooldown <= 0):
+        answerCooldown = answerCooldown + 3
+        resetCounters()
+        if (correctAnswer == 0):
+            cv.putText(frame, 'Option 1 - Correct!', (10, 250), font, 2.5, (255, 255, 255), 2)
+            score = score + 1
+        else:
+            cv.putText(frame, 'Option 1 - Incorrect!', (10, 250), font, 2.5, (255, 255, 255), 2)
+            score = score - 1
+            incorrectProblems.append(problem)
+
+        
+    if (c2counter >= 25 and answerCooldown <= 0):
+        answerCooldown = answerCooldown + 3
+        resetCounters()
+        if (correctAnswer == 1):
+            cv.putText(frame, 'Option 2 - Correct!', (10, 250), font, 2.5, (255, 255, 255), 2)
+            score = score + 1
+        else:
+            cv.putText(frame, 'Option 2 - Incorrect!', (10, 250), font, 2.5, (255, 255, 255), 2)
+            score = score - 1
+            incorrectProblems.append(problem)
+
+    if (c3counter >= 25 and answerCooldown <= 0):
+        answerCooldown = answerCooldown + 3
+        resetCounters()
+        if (correctAnswer == 2):
+            cv.putText(frame, 'Option 3 - Correct!', (10, 250), font, 2.5, (255, 255, 255), 2)
+            score = score + 1
+        else:
+            cv.putText(frame, 'Option 3 - Incorrect!', (10, 250), font, 2.5, (255, 255, 255), 2)
+            score = score - 1
+            incorrectProblems.append(problem)
+
+    if (c4counter >= 25 and answerCooldown <= 0):
+        answerCooldown = answerCooldown + 3
+        resetCounters()
+        if (correctAnswer == 3):
+            cv.putText(frame, 'Option 4 - Correct!', (10, 250), font, 2.5, (255, 255, 255), 2)
+            score = score + 1
+        else:
+            cv.putText(frame, 'Option 4 - Incorrect!', (10, 250), font, 2.5, (255, 255, 255), 2)
+            score = score - 1
+            incorrectProblems.append(problem)
 
 
-
-
+    if (answerCooldown > -10):
+        answerCooldown = answerCooldown - 1
     #cv.putText(frame, '%.2fms' % (t / freq), (10, 20), cv.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 0))
 
     cv.imshow('Body Tracker', frame)
@@ -217,3 +261,5 @@ while True:
 # Release the video capture and close the OpenCV window
 cap.release()
 cv.destroyAllWindows()
+
+
