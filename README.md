@@ -17,6 +17,3 @@ Contributions to Webcam Math Game are welcome! Whether you're interested in addi
 
 License
 Webcam Math Game is licensed under the MIT License. See the LICENSE file for details.
-
-Contact
-Have questions or suggestions? Feel free to reach out to us at contact@example.com. We'd love to hear from you!
