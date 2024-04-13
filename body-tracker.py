@@ -1,5 +1,6 @@
 import cv2 as cv
 import matplotlib.pyplot as plt
+import numpy as np
 
 net = cv.dnn.readNetFromTensorflow("graph_opt.pb") ## weights
 
@@ -72,6 +73,7 @@ cap = cv.VideoCapture(1)
 cap.set(cv.CAP_PROP_FPS, 30)
 cap.set(3, 800)
 cap.set(4, 800)
+font = cv.FONT_HERSHEY_SIMPLEX
 
 if not cap.isOpened():
     cap = cv.VideoCapture(0)
@@ -134,20 +136,62 @@ while True:
                 print(pair)
                 print(points[idFrom])
                 print(str(points[idFrom][0]) + " " + str(points[idFrom][1]))
-                
 
-                if (points[idFrom][0] <=150 and points[idFrom][1] <= 200):
+
+                # cv.rectangle(frame, (0, 0), (150, 150), (0, 255, 0), 3) #Option Box 1
+                # cv.rectangle(frame, (0, frameHeight-150), (150, frameHeight), (0, 255, 0), 3) #Option Box 2
+                # cv.rectangle(frame, (frameWidth - 150, 0), (frameWidth, 150), (0, 255, 0), 3) #Option Box 3
+                # cv.rectangle(frame, (frameWidth - 150, frameHeight-150), (frameWidth, frameHeight), (0, 255, 0), 3) #Option Box 4
+
+                
+                #Top Left
+                if (points[idFrom][0] <=150 and points[idFrom][1] <= 150):
                     c1counter = c1counter + 1
                     print(c1counter)
+
+
+                #Top Right
+                if (points[idFrom][0] >= (frameWidth - 150) and points[idFrom][1] <= 150): #FIXME: Add proper bounds
+                    c2counter = c2counter + 1
+                    print(c2counter)
+
+
+                #Bottom Left
+                if (points[idFrom][0] <= 150 and points[idFrom][1] >= (frameHeight - 150)):
+                    c3counter = c3counter + 1
+                    print(c3counter)
+
+                #Bottom Right
+                if (points[idFrom][0] >= (frameWidth - 150) and points[idFrom][1] >= (frameHeight - 150)):
+                    c4counter = c4counter + 1
+                    print(c4counter)
 
 
                 # get first and second values of points[idFrom]
 
 
+    #----------------------------------------------------------
     #Game Logic
-    if (c1counter >= 100):
-        #TODO: Implement the game logic
-        print("Top right option chosen!")
+
+    #drawing objects
+    cv.rectangle(frame, (0, 0), (150, 150), (0, 255, 0), 3) #Option Box 1
+    cv.rectangle(frame, (0, frameHeight-150), (150, frameHeight), (0, 255, 0), 3) #Option Box 2
+    cv.rectangle(frame, (frameWidth - 150, 0), (frameWidth, 150), (0, 255, 0), 3) #Option Box 3
+    cv.rectangle(frame, (frameWidth - 150, frameHeight-150), (frameWidth, frameHeight), (0, 255, 0), 3) #Option Box 4
+    
+
+
+    #counter manager
+    if (c1counter >= 25):
+        cv.putText(frame, 'Option 1 Picked!', (10, 250), font, 2.5, (255, 255, 255), 2)
+    if (c2counter >= 25):
+        cv.putText(frame, 'Option 2 Picked!', (10, 250), font, 2.5, (255, 255, 255), 2)
+    if (c3counter >= 25):
+        cv.putText(frame, 'Option 3 Picked!', (10, 250), font, 2.5, (255, 255, 255), 2)
+    if (c4counter >= 25):
+        cv.putText(frame, 'Option 4 Picked!', (10, 250), font, 2.5, (255, 255, 255), 2)
+
+
 
 
     #cv.putText(frame, '%.2fms' % (t / freq), (10, 20), cv.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 0))
