@@ -1,6 +1,7 @@
 import cv2 as cv
 import matplotlib.pyplot as plt
 import numpy as np
+from subtraction_manager import SubtractionManager
 
 net = cv.dnn.readNetFromTensorflow("graph_opt.pb") ## weights
 
@@ -178,6 +179,16 @@ while True:
     cv.rectangle(frame, (0, frameHeight-150), (150, frameHeight), (0, 255, 0), 3) #Option Box 2
     cv.rectangle(frame, (frameWidth - 150, 0), (frameWidth, 150), (0, 255, 0), 3) #Option Box 3
     cv.rectangle(frame, (frameWidth - 150, frameHeight-150), (frameWidth, frameHeight), (0, 255, 0), 3) #Option Box 4
+
+    #drawing answer choices
+    #call method from subtraction-manager.py
+    problem = SubtractionManager.getProblem()
+    cv.putText(frame, problem, (int(frameWidth/2) - 130, 60), font, 1, (255, 255, 255), 2) #problem
+    cv.putText(frame, str(SubtractionManager.getAnswerChoices()[0]), (20, 60), font, 1, (255, 255, 255), 2) #ac1
+    cv.putText(frame, str(SubtractionManager.getAnswerChoices()[1]), (int(frameWidth/2) + 200, 60), font, 1, (255, 255, 255), 2) #ac2
+    cv.putText(frame, str(SubtractionManager.getAnswerChoices()[2]), (20, frameHeight - 70), font, 1, (255, 255, 255), 2) #ac3
+    cv.putText(frame, str(SubtractionManager.getAnswerChoices()[3]), (int(frameWidth/2) + 200, frameHeight - 70), font, 1, (255, 255, 255), 2) #ac4
+
     
 
 
