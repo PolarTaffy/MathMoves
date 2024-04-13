@@ -77,6 +77,11 @@ if not cap.isOpened():
     cap = cv.VideoCapture(0)
 if not cap.isOpened():
     raise IOError("Cannot open webcam")
+
+c1counter = 0
+c2counter = 0
+c3counter = 0
+c4counter = 0
     
 while True:
     hasFrame, frame = cap.read()
@@ -93,6 +98,8 @@ while True:
     assert(len(BODY_PARTS) == out.shape[1])
 
     points = []
+    
+
 
     for i in range(len(BODY_PARTS)):
         # Slice heatmap of corresponding body's part.
@@ -122,7 +129,27 @@ while True:
             cv.ellipse(frame, points[idFrom], (3, 3), 0, 0, 360, (0, 0, 255), cv.FILLED)
             cv.ellipse(frame, points[idTo], (3, 3), 0, 0, 360, (0, 0, 255), cv.FILLED)
 
-    
+            #Manages each hand individually
+            if (pair[0] == 'LElbow' or pair[0] == 'RElbow'):
+                print(pair)
+                print(points[idFrom])
+                print(str(points[idFrom][0]) + " " + str(points[idFrom][1]))
+                
+
+                if (points[idFrom][0] <=150 and points[idFrom][1] <= 200):
+                    c1counter = c1counter + 1
+                    print(c1counter)
+
+
+                # get first and second values of points[idFrom]
+
+
+    #Game Logic
+    if (c1counter >= 100):
+        #TODO: Implement the game logic
+        print("Top right option chosen!")
+
+
     #cv.putText(frame, '%.2fms' % (t / freq), (10, 20), cv.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 0))
 
     cv.imshow('Body Tracker', frame)
