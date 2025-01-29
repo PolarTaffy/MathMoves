@@ -1,16 +1,18 @@
 import cv2 as cv
 import matplotlib.pyplot as plt
 import numpy as np
-from subtraction_manager import SubtractionManager
 import time
-
+import os
 import pathlib
 import textwrap
-
 import google.generativeai as genai
-
 from IPython.display import display
 from IPython.display import Markdown
+from subtraction_manager import SubtractionManager
+from dotenv import load_dotenv
+
+load_dotenv()
+SECRET_KEY = os.getenv("SECRET_KEY")
 
 
 def to_markdown(text):
@@ -22,7 +24,7 @@ net = cv.dnn.readNetFromTensorflow("graph_opt.pb") ## weights
 inWidth = 320
 inHeight = 240
 thr = 0.2
-genai.configure(api_key="AIzaSyD7yARIUfdto7bZ2TO8Bc9Qe10-4zqAcUs")
+genai.configure(api_key=SECRET_KEY)
 model = genai.GenerativeModel('gemini-pro')
 
 BODY_PARTS = { "Nose": 0, "Neck": 1, "RShoulder": 2, "RElbow": 3, "RWrist": 4,
